@@ -29,7 +29,7 @@ myApp.factory('phonegapReady', function() {
 
 myApp.factory('geolocation', function ($rootScope, phonegapReady) {
   return {
-    getCurrentPosition: function (onSuccess, onError, options) {
+    getCurrentPosition: phonegapReady(function (onSuccess, onError, options) {
         navigator.geolocation.getCurrentPosition(function () {
                var that = this,
                args = arguments;
@@ -50,7 +50,7 @@ myApp.factory('geolocation', function ($rootScope, phonegapReady) {
                    }
                },
             options);
-        }
+        })
     };
 });
 
